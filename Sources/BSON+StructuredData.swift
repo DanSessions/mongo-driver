@@ -32,6 +32,10 @@ extension BSON.Value {
             return .bytes(data)
         case .boolean(let bool): 
             return .bool(bool)
+        case .dateTime(let date):
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            return .string(dateFormatter.string(from: date))
         default:
             print("[FluentMongo] Could not convert BSON to Node.")
             return .null
